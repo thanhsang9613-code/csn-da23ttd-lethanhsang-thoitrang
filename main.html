@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Men - Thời Trang Nam</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><i class="fas fa-tshirt"></i> Fashion Store</h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#" onclick="showSection('home')">Trang chủ</a></li>
+                    <li><a href="#" onclick="showSection('products')">Sản phẩm</a></li>
+                    <li><a href="#" onclick="showSection('news')">Tin tức</a></li>
+                    <li><a href="#" onclick="showSection('about')">Giới thiệu</a></li>
+                    <li><a href="#" onclick="showSection('contact')">Liên hệ</a></li>
+                    <li><a href="#" onclick="showSection('cart')">Giỏ hàng <span id="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <div id="user-menu" class="user-menu" style="display: none;">
+                    <span id="username"></span>
+                    <div class="dropdown">
+                        <button class="dropdown-btn" onclick="toggleDropdown()">
+                            <i class="fas fa-user"></i>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="user-dropdown">
+                            <a href="#" onclick="showSection('profile'); closeDropdown();">
+                                <i class="fas fa-user"></i> Thông tin tài khoản
+                            </a>
+                            <a href="#" onclick="showSection('wishlist'); closeDropdown();">
+                                <i class="fas fa-heart"></i> Danh sách yêu thích
+                            </a>
+                            <a href="#" onclick="showSection('order-history'); closeDropdown();">
+                                <i class="fas fa-history"></i> Lịch sử đơn hàng
+                            </a>
+                            <div id="admin-menu" style="display: none;">
+                                <hr>
+                                <a href="#" onclick="showSection('admin-dashboard'); closeDropdown();">
+                                    <i class="fas fa-tachometer-alt"></i> Quản trị
+                                </a>
+                            </div>
+                            <hr>
+                            <a href="#" onclick="logout(); closeDropdown();">
+                                <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="auth-buttons" class="auth-buttons">
+                    <button onclick="showSection('login')">Đăng nhập</button>
+                    <button onclick="showSection('register')">Đăng ký</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-slider">
+                    <!-- Slide 1 -->
+                    <div class="hero-slide active" data-slide="0">
+                        <div class="hero-background">
+                            <img src="images/banner-1.jpg" alt="Thời Trang Cao Cấp">
+                            <div class="hero-overlay"></div>
+                        </div>
+                        <div class="container">
+                            <div class="hero-content">
+                                <div class="hero-text">
+                                    <span class="hero-badge">01</span>
+                                    <h2>Thời Trang Cao Cấp</h2>
+                                    <p>Bộ sưu tập thời trang nam hiện đại với chất lượng đỉnh cao</p>
+                                    <button onclick="showSection('products')" class="btn-hero">
+                                        Mua sắm ngay
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="hero-slide" data-slide="1">
+                        <div class="hero-background">
+                            <img src="images/banner-2.jpg" alt="Phong Cách Hiện Đại">
+                            <div class="hero-overlay"></div>
+                        </div>
+                        <div class="container">
+                            <div class="hero-content">
+                                <div class="hero-text">
+                                    <span class="hero-badge">02</span>
+                                    <h2>Phong Cách Hiện Đại</h2>
+                                    <p>Định nghĩa lại phong cách với thiết kế độc đáo và xu hướng mới</p>
+                                    <button onclick="showSection('products')" class="btn-hero">
+                                        Khám phá ngay
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="hero-slide" data-slide="2">
+                        <div class="hero-background">
+                            <img src="images/banner-3.jpg" alt="Chất Lượng Đỉnh Cao">
+                            <div class="hero-overlay"></div>
+                        </div>
+                        <div class="container">
+                            <div class="hero-content">
+                                <div class="hero-text">
+                                    <span class="hero-badge">03</span>
+                                    <h2>Chất Lượng Đỉnh Cao</h2>
+                                    <p>Cam kết sản phẩm chất lượng tốt nhất với giá cả hợp lý</p>
+                                    <button onclick="showSection('products')" class="btn-hero">
+                                        Xem sản phẩm
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Dots -->
+                <div class="hero-navigation">
+                    <div class="hero-dots">
+                        <button class="hero-dot active" data-slide="0"></button>
+                        <button class="hero-dot" data-slide="1"></button>
+                        <button class="hero-dot" data-slide="2"></button>
+                    </div>
+                    <div class="hero-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button class="hero-arrow hero-prev" onclick="heroTabs.prevSlide()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="hero-arrow hero-next" onclick="heroTabs.nextSlide()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="featured-products">
+                <div class="container">
+                    <h3>Sản phẩm nổi bật</h3>
+                    <div id="featured-grid" class="product-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="section">
+            <div class="container">
+                <h2>Sản phẩm</h2>
+                <div class="product-controls">
+                    <div class="search-box">
+                        <input type="text" id="product-search" placeholder="Tìm kiếm sản phẩm...">
+                        <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="filters">
+                        <select id="category-filter" onchange="filterProducts()">
+                            <option value="">Tất cả danh mục</option>
+                            <option value="ao-so-mi">Áo sơ mi</option>
+                            <option value="ao-thun">Áo thun & Áo khoác</option>
+                            <option value="quan-jean">Quần jean & Thể thao</option>
+                            <option value="quan-tay">Quần tây</option>
+                            <option value="phu-kien">Phụ kiện</option>
+                            <option value="non">Nón</option>
+                            <option value="vi">Ví</option>
+                        </select>
+                        <select id="price-filter" onchange="filterProducts()">
+                            <option value="">Tất cả giá</option>
+                            <option value="0-500000">Dưới 500.000đ</option>
+                            <option value="500000-1000000">500.000đ - 1.000.000đ</option>
+                            <option value="1000000-2000000">1.000.000đ - 2.000.000đ</option>
+                            <option value="2000000+">Trên 2.000.000đ</option>
+                        </select>
+                        <select id="sort-filter" onchange="sortProducts()">
+                            <option value="">Sắp xếp</option>
+                            <option value="price-asc">Giá tăng dần</option>
+                            <option value="price-desc">Giá giảm dần</option>
+                            <option value="name-asc">Tên A-Z</option>
+                            <option value="rating-desc">Đánh giá cao nhất</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="products-grid" class="product-grid"></div>
+            </div>
+        </section>
+
+        <!-- Product Detail Section -->
+        <section id="product-detail" class="section">
+            <div class="container">
+                <button onclick="showSection('products')" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Quay lại
+                </button>
+                <div id="product-detail-content"></div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="section">
+            <div class="container">
+                <h2>Tin tức & Khuyến mãi</h2>
+                <div class="news-tabs">
+                    <button class="tab-btn active" onclick="showNewsTab('all')">Tất cả</button>
+                    <button class="tab-btn" onclick="showNewsTab('news')">Tin tức</button>
+                    <button class="tab-btn" onclick="showNewsTab('promotion')">Khuyến mãi</button>
+                </div>
+                <div id="news-grid" class="news-grid"></div>
+            </div>
+        </section>
+
+        <!-- News Detail Section -->
+        <section id="news-detail" class="section">
+            <div class="container">
+                <button onclick="showSection('news')" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Quay lại
+                </button>
+                <div id="news-detail-content"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2>Giới thiệu</h2>
+                <div class="about-content">
+                    <div class="about-hero">
+                        <h3>Fashion Store - Thời trang nam hàng đầu</h3>
+                        <p>Chúng tôi tự hào là một trong những thương hiệu thời trang nam uy tín tại Việt Nam với hơn 10 năm kinh nghiệm trong ngành.</p>
+                    </div>
+                    <div class="about-sections">
+                        <div class="about-section">
+                            <h4><i class="fas fa-eye"></i> Tầm nhìn</h4>
+                            <p>Trở thành thương hiệu thời trang nam số 1 Việt Nam, mang đến phong cách hiện đại và chất lượng cao cho phái mạnh.</p>
+                        </div>
+                        <div class="about-section">
+                            <h4><i class="fas fa-bullseye"></i> Sứ mệnh</h4>
+                            <p>Cung cấp những sản phẩm thời trang chất lượng cao với giá cả hợp lý, giúp nam giới Việt tự tin thể hiện phong cách riêng.</p>
+                        </div>
+                        <div class="about-section">
+                            <h4><i class="fas fa-gem"></i> Giá trị cốt lõi</h4>
+                            <p>Chất lượng - Uy tín - Sáng tạo - Phục vụ khách hàng tận tâm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Liên hệ</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Thông tin liên hệ</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Địa chỉ:</strong>
+                                <p>123 Đường ABC, Quận 1, TP.HCM</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Điện thoại:</strong>
+                                <p>0123 456 789</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email:</strong>
+                                <p>info@fashionstore.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Giờ làm việc:</strong>
+                                <p>8:00 - 22:00 (Thứ 2 - Chủ nhật)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Gửi tin nhắn</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <input type="text" placeholder="Họ và tên" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Tiêu đề">
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Nội dung tin nhắn" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary">Gửi tin nhắn</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="section">
+            <div class="container">
+                <h2>Thông tin tài khoản</h2>
+                <div class="profile-content">
+                    <div class="profile-info">
+                        <h3>Thông tin cá nhân</h3>
+                        <form id="profile-form">
+                            <div class="form-group">
+                                <label>Họ và tên:</label>
+                                <input type="text" id="profile-fullname" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input type="email" id="profile-email" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Số điện thoại:</label>
+                                <input type="tel" id="profile-phone">
+                            </div>
+                            <div class="form-group">
+                                <label>Địa chỉ:</label>
+                                <textarea id="profile-address"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary">Cập nhật thông tin</button>
+                        </form>
+                    </div>
+                    <div class="profile-stats">
+                        <h3>Thống kê</h3>
+                        <div class="stat-item">
+                            <i class="fas fa-shopping-bag"></i>
+                            <div>
+                                <span class="stat-number" id="total-orders">0</span>
+                                <span class="stat-label">Đơn hàng</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-heart"></i>
+                            <div>
+                                <span class="stat-number" id="total-wishlist">0</span>
+                                <span class="stat-label">Yêu thích</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wishlist Section -->
+        <section id="wishlist" class="section">
+            <div class="container">
+                <h2>Danh sách yêu thích</h2>
+                <div id="wishlist-grid" class="product-grid"></div>
+            </div>
+        </section>
+
+        <!-- Order History Section -->
+        <section id="order-history" class="section">
+            <div class="container">
+                <h2>Lịch sử đơn hàng</h2>
+                <div id="order-history-list"></div>
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section id="cart" class="section">
+            <div class="container">
+                <h2>Giỏ hàng</h2>
+                <div id="cart-items"></div>
+                <div id="cart-total" class="cart-total"></div>
+                <button id="checkout-btn" onclick="showSection('checkout')" class="btn-primary" style="display: none;">
+                    Tiến hành thanh toán
+                </button>
+            </div>
+        </section>
+
+        <!-- Checkout Section -->
+        <section id="checkout" class="section">
+            <div class="container">
+                <h2>Thanh toán</h2>
+                <form id="checkout-form" class="checkout-form">
+                    <div class="form-group">
+                        <label>Họ và tên:</label>
+                        <input type="text" id="fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Số điện thoại:</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Địa chỉ:</label>
+                        <textarea id="address" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Phương thức thanh toán:</label>
+                        <select id="payment-method" required>
+                            <option value="">Chọn phương thức</option>
+                            <option value="cod">Thanh toán khi nhận hàng</option>
+                            <option value="bank">Chuyển khoản ngân hàng</option>
+                            <option value="momo">Ví MoMo</option>
+                        </select>
+                    </div>
+                    <div class="order-summary">
+                        <h3>Tóm tắt đơn hàng</h3>
+                        <div id="order-items"></div>
+                        <div id="order-total"></div>
+                    </div>
+                    <button type="submit" class="btn-primary">Đặt hàng</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Login Section -->
+        <section id="login" class="section">
+            <div class="container">
+                <div class="auth-form">
+                    <h2>Đăng nhập</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu:</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Đăng nhập</button>
+                    </form>
+                    <p>Chưa có tài khoản? <a href="#" onclick="showSection('register')">Đăng ký ngay</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Register Section -->
+        <section id="register" class="section">
+            <div class="container">
+                <div class="auth-form">
+                    <h2>Đăng ký</h2>
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label>Họ và tên:</label>
+                            <input type="text" id="register-fullname" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" id="register-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu:</label>
+                            <input type="password" id="register-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Xác nhận mật khẩu:</label>
+                            <input type="password" id="register-confirm-password" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Đăng ký</button>
+                    </form>
+                    <p>Đã có tài khoản? <a href="#" onclick="showSection('login')">Đăng nhập</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Dashboard -->
+        <section id="admin-dashboard" class="section">
+            <div class="container">
+                <h2>Bảng điều khiển quản trị</h2>
+                <div class="admin-nav">
+                    <button class="admin-tab-btn active" onclick="showAdminTab('overview')">Tổng quan</button>
+                    <button class="admin-tab-btn" onclick="showAdminTab('products')">Sản phẩm</button>
+                    <button class="admin-tab-btn" onclick="showAdminTab('categories')">Danh mục</button>
+                    <button class="admin-tab-btn" onclick="showAdminTab('orders')">Đơn hàng</button>
+                    <button class="admin-tab-btn" onclick="showAdminTab('users')">Người dùng</button>
+                    <button class="admin-tab-btn" onclick="showAdminTab('news')">Tin tức</button>
+                    <button class="admin-tab-btn" onclick="showAdminTab('revenue')">Doanh thu</button>
+                </div>
+                
+                <!-- Admin Overview -->
+                <div id="admin-overview" class="admin-tab-content active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h3 id="total-users-stat">0</h3>
+                                <p>Người dùng</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-box"></i>
+                            <div>
+                                <h3 id="total-products-stat">0</h3>
+                                <p>Sản phẩm</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-shopping-cart"></i>
+                            <div>
+                                <h3 id="total-orders-stat">0</h3>
+                                <p>Đơn hàng</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-dollar-sign"></i>
+                            <div>
+                                <h3 id="total-revenue-stat">0đ</h3>
+                                <p>Doanh thu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Products -->
+                <div id="admin-products" class="admin-tab-content">
+                    <div class="admin-header">
+                        <h3>Quản lý sản phẩm</h3>
+                        <button onclick="showAddProductForm()" class="btn-primary">
+                            <i class="fas fa-plus"></i> Thêm sản phẩm
+                        </button>
+                    </div>
+                    <div id="admin-products-table"></div>
+                </div>
+
+                <!-- Admin Categories -->
+                <div id="admin-categories" class="admin-tab-content">
+                    <div class="admin-header">
+                        <h3>Quản lý danh mục</h3>
+                        <button onclick="showAddCategoryForm()" class="btn-primary">
+                            <i class="fas fa-plus"></i> Thêm danh mục
+                        </button>
+                    </div>
+                    <div id="admin-categories-table"></div>
+                </div>
+
+                <!-- Admin Orders -->
+                <div id="admin-orders" class="admin-tab-content">
+                    <h3>Quản lý đơn hàng</h3>
+                    <div id="admin-orders-table"></div>
+                </div>
+
+                <!-- Admin Users -->
+                <div id="admin-users" class="admin-tab-content">
+                    <h3>Quản lý người dùng</h3>
+                    <div id="admin-users-table"></div>
+                </div>
+
+                <!-- Admin News -->
+                <div id="admin-news" class="admin-tab-content">
+                    <div class="admin-header">
+                        <h3>Quản lý tin tức</h3>
+                        <button onclick="showAddNewsForm()" class="btn-primary">
+                            <i class="fas fa-plus"></i> Thêm tin tức
+                        </button>
+                    </div>
+                    <div id="admin-news-table"></div>
+                </div>
+
+                <!-- Admin Revenue -->
+                <div id="admin-revenue" class="admin-tab-content">
+                    <h3>Thống kê doanh thu</h3>
+                    <div class="revenue-filters">
+                        <input type="date" id="revenue-from" onchange="updateRevenueChart()">
+                        <input type="date" id="revenue-to" onchange="updateRevenueChart()">
+                        <button onclick="updateRevenueChart()" class="btn-primary">Xem thống kê</button>
+                    </div>
+                    <div id="revenue-chart"></div>
+                    <div id="revenue-table"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Service Features -->
+        <div class="footer-features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>MIỄN PHÍ SHIP</h4>
+                            <p>Toàn quốc</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>BẢO HÀNH</h4>
+                            <p>365 ngày</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>ĐỊA CHỈ</h4>
+                            <p>Cửa hàng Fashion Store VN</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>TẠP CHÍ</h4>
+                            <p>Thông tin thời trang</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="footer-links">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h3>Quần Áo</h3>
+                        <ul>
+                            <li><a href="#" onclick="filterByCategory('ao-thun')">Áo Thun</a></li>
+                            <li><a href="#" onclick="filterByCategory('ao-khoac')">Áo Khoác</a></li>
+                            <li><a href="#" onclick="filterByCategory('ao-so-mi')">Áo Sơ Mi</a></li>
+                            <li><a href="#" onclick="filterByCategory('quan-tay')">Quần Tây</a></li>
+                            <li><a href="#" onclick="filterByCategory('quan-short')">Quần Short</a></li>
+                            <li><a href="#" onclick="filterByCategory('quan-jean')">Quần Jeans</a></li>
+                            <li><a href="#" onclick="filterByCategory('quan-lot')">Quần Lót</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Phụ Kiện</h3>
+                        <ul>
+                            <li><a href="#" onclick="filterByCategory('balo')">Balo</a></li>
+                            <li><a href="#" onclick="filterByCategory('non')">Nón</a></li>
+                            <li><a href="#" onclick="filterByCategory('vi')">Ví</a></li>
+                            <li><a href="#" onclick="filterByCategory('day-nit')">Dây Nịt</a></li>
+                            <li><a href="#" onclick="filterByCategory('giay')">Giày</a></li>
+                            <li><a href="#" onclick="filterByCategory('phu-kien-ca-nhan')">Phụ Kiện Cá Nhân</a></li>
+                            <li><a href="#" onclick="filterByCategory('phu-kien-the-thao')">Phụ Kiện Thể Thao</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Trang Phục</h3>
+                        <div class="sub-section">
+                            <h4>THIẾT YẾU</h4>
+                            <ul>
+                                <li><a href="#" onclick="filterByCategory('bst-non-branded')">BST Non-Branded</a></li>
+                                <li><a href="#" onclick="filterByCategory('bst-seventy-seven')">BST Seventy Seven</a></li>
+                                <li><a href="#" onclick="filterByCategory('bst-the-worker')">BST The Worker</a></li>
+                            </ul>
+                        </div>
+                        <div class="sub-section">
+                            <h4>CÔNG NGHỆ</h4>
+                            <ul>
+                                <li><a href="#" onclick="filterByCategory('bst-the-minimalist')">BST The Minimalist</a></li>
+                                <li><a href="#" onclick="filterByCategory('bst-the-ceo')">BST The CEO</a></li>
+                            </ul>
+                        </div>
+                        <div class="sub-section">
+                            <h4>TẦM HƯỚNG</h4>
+                            <ul>
+                                <li><a href="#" onclick="filterByCategory('bst-the-no-style')">BST The No Style</a></li>
+                                <li><a href="#" onclick="filterByCategory('bst-the-weekend')">BST The Weekend</a></li>
+                                <li><a href="#" onclick="filterByCategory('bst-the-home-body')">BST The Home Body</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Về Fashion Store</h3>
+                        <ul>
+                            <li><a href="#" onclick="showSection('about')">Giới Thiệu</a></li>
+                            <li><a href="#" onclick="showSection('contact')">Cửa Hàng</a></li>
+                            <li><a href="#" onclick="showSection('news')">Báo Hành</a></li>
+                            <li><a href="#" onclick="showSection('news')">Đổi Trả</a></li>
+                            <li><a href="#" onclick="showSection('news')">Đăng Nhập VIP</a></li>
+                            <li><a href="#" onclick="showSection('news')">Chính Sách VIP</a></li>
+                            <li><a href="#" onclick="showSection('contact')">SiteMap</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Gia nhập Cộng đồng Fashion Store</h3>
+                        <div class="newsletter">
+                            <input type="email" placeholder="Nhập email" class="newsletter-input">
+                            <button class="newsletter-btn">Đăng Ký</button>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link tiktok">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="#" class="social-link youtube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-link discord">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 Fashion Store. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/news.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
